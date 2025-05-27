@@ -4,18 +4,22 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author mike
  */
-public class RegiterVehiculo extends javax.swing.JFrame {
+public class RegisterVehiculo extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegiterVehiculo.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegisterVehiculo.class.getName());
 
     /**
      * Creates new form RegiterVehiculo
      */
-    public RegiterVehiculo() {
+    public RegisterVehiculo() {
         initComponents();
     }
 
@@ -41,8 +45,7 @@ public class RegiterVehiculo extends javax.swing.JFrame {
         capcidadLabel = new javax.swing.JLabel();
         capacidadText = new javax.swing.JTextField();
         separadorCapacidad = new javax.swing.JSeparator();
-        btnRegistroVehiculo = new javax.swing.JPanel();
-        btnRegistroVehiculoLabel = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -73,7 +76,7 @@ public class RegiterVehiculo extends javax.swing.JFrame {
         placaText.setBackground(new java.awt.Color(255, 255, 255));
         placaText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         placaText.setForeground(new java.awt.Color(153, 153, 153));
-        placaText.setText("Ingrese la placa del vahiculo");
+        placaText.setText("Ingrese la placa del vehiculo");
         placaText.setBorder(null);
         placaText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
         placaText.addActionListener(new java.awt.event.ActionListener() {
@@ -122,25 +125,15 @@ public class RegiterVehiculo extends javax.swing.JFrame {
         bg.add(capacidadText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 300, 30));
         bg.add(separadorCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 300, 10));
 
-        btnRegistroVehiculo.setBackground(new java.awt.Color(0, 0, 0));
-
-        btnRegistroVehiculoLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        btnRegistroVehiculoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistroVehiculoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnRegistroVehiculoLabel.setText("ENVIAR");
-
-        javax.swing.GroupLayout btnRegistroVehiculoLayout = new javax.swing.GroupLayout(btnRegistroVehiculo);
-        btnRegistroVehiculo.setLayout(btnRegistroVehiculoLayout);
-        btnRegistroVehiculoLayout.setHorizontalGroup(
-            btnRegistroVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegistroVehiculoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-        btnRegistroVehiculoLayout.setVerticalGroup(
-            btnRegistroVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegistroVehiculoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        bg.add(btnRegistroVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 120, 50));
+        btnRegistrar.setBackground(new java.awt.Color(0, 0, 0));
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("ENVIAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        bg.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 117, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +161,10 @@ public class RegiterVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_capacidadTextActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,13 +187,12 @@ public class RegiterVehiculo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new RegiterVehiculo().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new RegisterVehiculo().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JPanel btnRegistroVehiculo;
-    private javax.swing.JLabel btnRegistroVehiculoLabel;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JTextField capacidadText;
     private javax.swing.JLabel capcidadLabel;
     private javax.swing.JLabel jLabel1;
@@ -210,4 +206,39 @@ public class RegiterVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel tipoLabel;
     private javax.swing.JTextField tipoText;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getCapacidadText() {
+        return capacidadText;
+    }
+
+    public JTextField getPlacaText() {
+        return placaText;
+    }
+
+    public JTextField getTipoText() {
+        return tipoText;
+    }
+
+    public JButton getBtnRegistrar() {
+        return btnRegistrar;
+    }
+
+    public JLabel getCapcidadLabel() {
+        return capcidadLabel;
+    }
+
+    public JLabel getPlacaLabel() {
+        return placaLabel;
+    }
+
+    public JLabel getTipoLabel() {
+        return tipoLabel;
+    }
+
+  
+
+
+
 }
+
+
