@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -23,6 +24,12 @@ public class VehiculoController implements ActionListener, MouseListener {
     RegisterVehiculo registerVehiculo;
     Vehiculo vehiculo;
     private final List<CampoConTexto> camposTexto = new ArrayList<>();
+    private VehiculoDAO vehiculoDAO;
+    
+    public VehiculoController() {
+        this.vehiculoDAO = new VehiculoDAO();
+    }
+    
     
     public VehiculoController (RegisterVehiculo registerVehiculo, Vehiculo vehiculo){
         this.registerVehiculo = registerVehiculo; // Vista
@@ -142,6 +149,7 @@ public class VehiculoController implements ActionListener, MouseListener {
                 message.getRegisterExitosoTipoLabel().setText("Tipo: " + vehiculo.getTipo());
                 message.getRegisterExitosoCapacidadLabel().setText("Capacidad: " + String.valueOf(vehiculo.getCapacidad()));
                 
+                message.getMessageLabel().setText("Vehiculo registrado");
                 message.setVisible(true);
             }
             else{
@@ -163,6 +171,22 @@ public class VehiculoController implements ActionListener, MouseListener {
     public void mouseEntered(MouseEvent e) {}
     @Override
     public void mouseExited(MouseEvent e) {}
+    
+    
+    
+    public void cargarVehiculosEnTabla(DefaultTableModel modelo) {
+        // Limpiar la tabla antes de cargar nuevos datos
+        modelo.setRowCount(0);
+        
+        // Llamar al método del DAO para obtener los vehículos
+        vehiculoDAO.obtenerVehiculosTabla(modelo);
+    }
+    
+    public void eliminarVehiculo (String placa) {
+        System.out.println("Ohhhh vas a eliminar: " + placa);
+    }
+    
+    
     
     public static void main(String[] arg){
          RegisterVehiculo registerVehiculo = new RegisterVehiculo();

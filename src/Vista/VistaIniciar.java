@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+import Controlador.ConductorController;
+import Modelo.Vehiculo;
+import Controlador.VehiculoController;
+import Modelo.Conductor;
 
 /**
  *
@@ -11,7 +15,7 @@ package Vista;
 public class VistaIniciar extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaIniciar.class.getName());
-
+    
     /**
      * Creates new form VistaIniciar
      */
@@ -30,11 +34,13 @@ public class VistaIniciar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        btnRegisConductor = new javax.swing.JButton();
+        btnCConsultar = new javax.swing.JButton();
+        btnC = new javax.swing.JButton();
+        btnV1 = new javax.swing.JButton();
+        btnV2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 490));
+        setPreferredSize(new java.awt.Dimension(501, 417));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -45,18 +51,39 @@ public class VistaIniciar extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 200, 70));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 200, 70));
 
-        jButton2.setText("Registrar Vehiculos");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 200, 70));
-
-        btnRegisConductor.setText("Registrar Conductores");
-        btnRegisConductor.addActionListener(new java.awt.event.ActionListener() {
+        btnCConsultar.setText("Consultar");
+        btnCConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisConductorActionPerformed(evt);
+                btnCConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegisConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 200, 70));
+        jPanel1.add(btnCConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 120, 70));
+
+        btnC.setText("Registrar Conductores");
+        btnC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 200, 70));
+
+        btnV1.setText("Registrar Vehiculos");
+        btnV1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnV1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 70));
+
+        btnV2.setText("Consultar");
+        btnV2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnV2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnV2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 120, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,7 +93,7 @@ public class VistaIniciar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
         );
 
         pack();
@@ -76,12 +103,34 @@ public class VistaIniciar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnRegisConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisConductorActionPerformed
+    private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
         // TODO add your handling code here:
-        RegisterConductores rC = new RegisterConductores();
-        rC.setVisible(true);
+         RegisterConductores registerConductor = new RegisterConductores();
+        Conductor conductor = new Conductor();
+        ConductorController controller = new ConductorController(registerConductor, conductor);
+        registerConductor.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnRegisConductorActionPerformed
+    }//GEN-LAST:event_btnCActionPerformed
+
+    private void btnCConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCConsultarActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btnCConsultarActionPerformed
+
+    private void btnV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnV1ActionPerformed
+        // TODO add your handling code here:
+        RegisterVehiculo registerVehiculo = new RegisterVehiculo();
+         Vehiculo vehiculo = new Vehiculo();
+
+         VehiculoController controlador = new VehiculoController(registerVehiculo, vehiculo);
+
+         registerVehiculo.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnV1ActionPerformed
+
+    private void btnV2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnV2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnV2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,9 +158,11 @@ public class VistaIniciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegisConductor;
+    private javax.swing.JButton btnC;
+    private javax.swing.JButton btnCConsultar;
+    private javax.swing.JButton btnV1;
+    private javax.swing.JButton btnV2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

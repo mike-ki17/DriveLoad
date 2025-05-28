@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 
 
 public class VehiculoDAO {
@@ -43,4 +44,35 @@ public class VehiculoDAO {
             return false;
         }
     }
+    
+    
+    public void obtenerVehiculosTabla(DefaultTableModel modelo) {
+        String query = "SELECT * FROM vehiculos";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] fila = {
+                    rs.getString("placa"),
+                    rs.getString("tipo"),
+                    rs.getDouble("capacidad")
+                };
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener vehículos: " + e.getMessage());
+        }
+    }
+    
+
+
+    public void limpiarModelo(DefaultTableModel modelo) {
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+    }
 }
+
+

@@ -4,6 +4,15 @@
  */
 package Vista;
 
+import java.util.logging.Logger;
+import javax.accessibility.AccessibleContext;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+
 /**
  *
  * @author mike
@@ -33,19 +42,22 @@ public class RegisterConductores extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         placaLabel = new javax.swing.JLabel();
-        placaText = new javax.swing.JTextField();
+        nombreText = new javax.swing.JTextField();
         separadorPlaca = new javax.swing.JSeparator();
         tipoLabel = new javax.swing.JLabel();
         separadorTipo = new javax.swing.JSeparator();
-        tipoText = new javax.swing.JTextField();
+        licenciaText = new javax.swing.JTextField();
         capcidadLabel = new javax.swing.JLabel();
-        capacidadText = new javax.swing.JTextField();
+        experienciaText = new javax.swing.JTextField();
         separadorCapacidad = new javax.swing.JSeparator();
         btnRegistroVehiculo = new javax.swing.JPanel();
-        btnRegistroVehiculoLabel = new javax.swing.JLabel();
+        btnRegistrarConductor = new javax.swing.JButton();
+        experienciaErrorLabel = new javax.swing.JLabel();
+        nombreErrorLabel = new javax.swing.JLabel();
+        licenciaErrorLabel = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 490));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,18 +81,18 @@ public class RegisterConductores extends javax.swing.JFrame {
         placaLabel.setText("NOMBRE");
         jPanel1.add(placaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, 30));
 
-        placaText.setBackground(new java.awt.Color(255, 255, 255));
-        placaText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        placaText.setForeground(new java.awt.Color(153, 153, 153));
-        placaText.setText("Ingrese el nombre del conductor");
-        placaText.setBorder(null);
-        placaText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        placaText.addActionListener(new java.awt.event.ActionListener() {
+        nombreText.setBackground(new java.awt.Color(255, 255, 255));
+        nombreText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        nombreText.setForeground(new java.awt.Color(153, 153, 153));
+        nombreText.setText("Ingrese el nombre del conductor");
+        nombreText.setBorder(null);
+        nombreText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        nombreText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                placaTextActionPerformed(evt);
+                nombreTextActionPerformed(evt);
             }
         });
-        jPanel1.add(placaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 300, 30));
+        jPanel1.add(nombreText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 300, 30));
         jPanel1.add(separadorPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 300, 10));
 
         tipoLabel.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
@@ -89,57 +101,78 @@ public class RegisterConductores extends javax.swing.JFrame {
         jPanel1.add(tipoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
         jPanel1.add(separadorTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 300, 10));
 
-        tipoText.setBackground(new java.awt.Color(255, 255, 255));
-        tipoText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        tipoText.setForeground(new java.awt.Color(153, 153, 153));
-        tipoText.setText("Ingrese el tipo de licencia");
-        tipoText.setBorder(null);
-        tipoText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        tipoText.addActionListener(new java.awt.event.ActionListener() {
+        licenciaText.setBackground(new java.awt.Color(255, 255, 255));
+        licenciaText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        licenciaText.setForeground(new java.awt.Color(153, 153, 153));
+        licenciaText.setText("Ingrese tipo de licencia");
+        licenciaText.setBorder(null);
+        licenciaText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        licenciaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoTextActionPerformed(evt);
+                licenciaTextActionPerformed(evt);
             }
         });
-        jPanel1.add(tipoText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 300, 30));
+        jPanel1.add(licenciaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 300, 30));
 
         capcidadLabel.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         capcidadLabel.setForeground(new java.awt.Color(0, 0, 0));
         capcidadLabel.setText("EXPERIENCIA");
         jPanel1.add(capcidadLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
-        capacidadText.setBackground(new java.awt.Color(255, 255, 255));
-        capacidadText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        capacidadText.setForeground(new java.awt.Color(153, 153, 153));
-        capacidadText.setText("Ingrese la experiencia en años");
-        capacidadText.setBorder(null);
-        capacidadText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
-        capacidadText.addActionListener(new java.awt.event.ActionListener() {
+        experienciaText.setBackground(new java.awt.Color(255, 255, 255));
+        experienciaText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        experienciaText.setForeground(new java.awt.Color(153, 153, 153));
+        experienciaText.setText("Ingrese los años de experiencia");
+        experienciaText.setBorder(null);
+        experienciaText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
+        experienciaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capacidadTextActionPerformed(evt);
+                experienciaTextActionPerformed(evt);
             }
         });
-        jPanel1.add(capacidadText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 300, 30));
+        jPanel1.add(experienciaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 300, 30));
         jPanel1.add(separadorCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 300, 10));
 
         btnRegistroVehiculo.setBackground(new java.awt.Color(0, 0, 0));
 
-        btnRegistroVehiculoLabel.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        btnRegistroVehiculoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistroVehiculoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnRegistroVehiculoLabel.setText("ENVIAR");
+        btnRegistrarConductor.setBackground(new java.awt.Color(0, 0, 0));
+        btnRegistrarConductor.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarConductor.setText("ENVIAR");
 
         javax.swing.GroupLayout btnRegistroVehiculoLayout = new javax.swing.GroupLayout(btnRegistroVehiculo);
         btnRegistroVehiculo.setLayout(btnRegistroVehiculoLayout);
         btnRegistroVehiculoLayout.setHorizontalGroup(
             btnRegistroVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegistroVehiculoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(btnRegistrarConductor, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         btnRegistroVehiculoLayout.setVerticalGroup(
             btnRegistroVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegistroVehiculoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(btnRegistrarConductor, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(btnRegistroVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 120, 50));
+
+        experienciaErrorLabel.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        experienciaErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(experienciaErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
+
+        nombreErrorLabel.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        nombreErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(nombreErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, 30));
+
+        licenciaErrorLabel.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        licenciaErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(licenciaErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, 30));
+
+        btnMenu.setBackground(new java.awt.Color(0, 0, 0));
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 120, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,17 +188,24 @@ public class RegisterConductores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void placaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placaTextActionPerformed
+    private void nombreTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_placaTextActionPerformed
+    }//GEN-LAST:event_nombreTextActionPerformed
 
-    private void tipoTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoTextActionPerformed
+    private void licenciaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_licenciaTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tipoTextActionPerformed
+    }//GEN-LAST:event_licenciaTextActionPerformed
 
-    private void capacidadTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacidadTextActionPerformed
+    private void experienciaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experienciaTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_capacidadTextActionPerformed
+    }//GEN-LAST:event_experienciaTextActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        VistaIniciar init = new VistaIniciar();
+        init.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,24 +233,205 @@ public class RegisterConductores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMenu;
+    private javax.swing.JButton btnRegistrarConductor;
     private javax.swing.JPanel btnRegistroVehiculo;
-    private javax.swing.JLabel btnRegistroVehiculoLabel;
-    private javax.swing.JTextField capacidadText;
     private javax.swing.JLabel capcidadLabel;
+    private javax.swing.JLabel experienciaErrorLabel;
+    private javax.swing.JTextField experienciaText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel licenciaErrorLabel;
+    private javax.swing.JTextField licenciaText;
+    private javax.swing.JLabel nombreErrorLabel;
+    private javax.swing.JTextField nombreText;
     private javax.swing.JLabel placaLabel;
-    private javax.swing.JTextField placaText;
     private javax.swing.JSeparator separadorCapacidad;
     private javax.swing.JSeparator separadorPlaca;
     private javax.swing.JSeparator separadorTipo;
     private javax.swing.JLabel tipoLabel;
-    private javax.swing.JTextField tipoText;
     // End of variables declaration//GEN-END:variables
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    public JButton getBtnRegistrarConductor() {
+        return btnRegistrarConductor;
+    }
+
+
+    public JLabel getCapcidadLabel() {
+        return capcidadLabel;
+    }
+
+    public JLabel getExperienciaErrorLabel() {
+        return experienciaErrorLabel;
+    }
+
+    public JTextField getExperienciaText() {
+        return experienciaText;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JLabel getLicenciaErrorLabel() {
+        return licenciaErrorLabel;
+    }
+
+    public JTextField getLicenciaText() {
+        return licenciaText;
+    }
+
+    public JLabel getNombreErrorLabel() {
+        return nombreErrorLabel;
+    }
+
+    public JTextField getNombreText() {
+        return nombreText;
+    }
+
+    public JLabel getPlacaLabel() {
+        return placaLabel;
+    }
+
+    public JSeparator getSeparadorCapacidad() {
+        return separadorCapacidad;
+    }
+
+    public JSeparator getSeparadorPlaca() {
+        return separadorPlaca;
+    }
+
+    public JSeparator getSeparadorTipo() {
+        return separadorTipo;
+    }
+
+    public JLabel getTipoLabel() {
+        return tipoLabel;
+    }
+
+    public JRootPane getRootPane() {
+        return rootPane;
+    }
+
+    public boolean isRootPaneCheckingEnabled() {
+        return rootPaneCheckingEnabled;
+    }
+
+    public AccessibleContext getAccessibleContext() {
+        return accessibleContext;
+    }
+
+
+    public static int getNORMAL() {
+        return NORMAL;
+    }
+
+    public static int getICONIFIED() {
+        return ICONIFIED;
+    }
+
+    public static int getMAXIMIZED_HORIZ() {
+        return MAXIMIZED_HORIZ;
+    }
+
+    public static int getMAXIMIZED_VERT() {
+        return MAXIMIZED_VERT;
+    }
+
+    public static int getMAXIMIZED_BOTH() {
+        return MAXIMIZED_BOTH;
+    }
+
+    public static float getTOP_ALIGNMENT() {
+        return TOP_ALIGNMENT;
+    }
+
+    public static float getCENTER_ALIGNMENT() {
+        return CENTER_ALIGNMENT;
+    }
+
+    public static float getBOTTOM_ALIGNMENT() {
+        return BOTTOM_ALIGNMENT;
+    }
+
+    public static float getLEFT_ALIGNMENT() {
+        return LEFT_ALIGNMENT;
+    }
+
+    public static float getRIGHT_ALIGNMENT() {
+        return RIGHT_ALIGNMENT;
+    }
+
+   
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static int getPROPERTIES() {
+        return PROPERTIES;
+    }
+
+    public static int getSOMEBITS() {
+        return SOMEBITS;
+    }
+
+    public static int getFRAMEBITS() {
+        return FRAMEBITS;
+    }
+
+    public static int getALLBITS() {
+        return ALLBITS;
+    }
+
+    public static int getERROR() {
+        return ERROR;
+    }
+
+    public static int getABORT() {
+        return ABORT;
+    }
+
+    public static int getDO_NOTHING_ON_CLOSE() {
+        return DO_NOTHING_ON_CLOSE;
+    }
+
+    public static int getHIDE_ON_CLOSE() {
+        return HIDE_ON_CLOSE;
+    }
+
+    public static int getDISPOSE_ON_CLOSE() {
+        return DISPOSE_ON_CLOSE;
+    }
+
+    public static int getEXIT_ON_CLOSE() {
+        return EXIT_ON_CLOSE;
+    }
 
 //    void isVisible(boolean b) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 //    }
+    
 }

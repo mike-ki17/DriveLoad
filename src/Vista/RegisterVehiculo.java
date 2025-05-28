@@ -49,6 +49,7 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         placaErrorLabel = new javax.swing.JLabel();
         tipoErrorLabel = new javax.swing.JLabel();
         capacidadErrorLabel = new javax.swing.JLabel();
+        btnMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -150,6 +151,16 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         capacidadErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
         bg.add(capacidadErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 10));
 
+        btnMenu.setBackground(new java.awt.Color(0, 0, 0));
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        bg.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 100, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,6 +191,13 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        VistaIniciar init = new VistaIniciar();
+        init.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,6 +225,7 @@ public class RegisterVehiculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel capacidadErrorLabel;
     private javax.swing.JTextField capacidadText;
