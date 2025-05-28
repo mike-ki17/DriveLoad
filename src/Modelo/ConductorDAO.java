@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConductorDAO {
 
@@ -41,4 +43,26 @@ public class ConductorDAO {
             return false;
         }
     }
+    
+    
+    public List<Conductor> listarConductores() {
+        List<Conductor> lista = new ArrayList<>();
+        String sql = "SELECT * FROM conductores";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Conductor c = new Conductor();
+                c.setNombre(rs.getString("nombre"));
+                c.setLicencia(rs.getString("licencia"));
+                c.setExperiencia(rs.getInt("experiencia"));
+                lista.add(c);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
 }

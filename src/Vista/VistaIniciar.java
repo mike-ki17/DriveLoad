@@ -89,7 +89,7 @@ public class VistaIniciar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,6 +130,9 @@ public class VistaIniciar extends javax.swing.JFrame {
 
     private void btnV2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnV2ActionPerformed
         // TODO add your handling code here:
+        listarVehiculos listaVehiculos = new listarVehiculos();
+        listaVehiculos.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnV2ActionPerformed
 
     /**

@@ -42,6 +42,8 @@ public class listarVehiculos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableListVehiculos = new javax.swing.JTable();
         btnELiminar = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
+        btnEditarVehiculo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +82,26 @@ public class listarVehiculos extends javax.swing.JFrame {
         });
         jPanel1.add(btnELiminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 120, 50));
 
+        btnMenu.setBackground(new java.awt.Color(0, 0, 0));
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("MENU");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 120, 50));
+
+        btnEditarVehiculo.setBackground(new java.awt.Color(51, 51, 255));
+        btnEditarVehiculo.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarVehiculo.setText("EDITAR");
+        btnEditarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarVehiculoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEditarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 530, 100, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,18 +120,92 @@ public class listarVehiculos extends javax.swing.JFrame {
 
     private void btnELiminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnELiminarActionPerformed
         // TODO add your handling code here:
+//        int filaSeleccionada = tableListVehiculos.getSelectedRow();
+//        if(filaSeleccionada >= 0) {
+//            // Obtener placa de la fila seleccionada
+//            String placa = (String) tableListVehiculos.getValueAt(filaSeleccionada, 0);
+//            // Llamar al controlador para eliminar
+//            vehiculoController.eliminarVehiculo(placa);
+//            // Actualizar tabla
+//            cargarTablaVehiculos();
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Seleccione un vehículo para eliminar");
+//        }
         int filaSeleccionada = tableListVehiculos.getSelectedRow();
-    if(filaSeleccionada >= 0) {
-        // Obtener placa de la fila seleccionada
-        String placa = (String) tableListVehiculos.getValueAt(filaSeleccionada, 0);
-        // Llamar al controlador para eliminar
-        vehiculoController.eliminarVehiculo(placa);
-        // Actualizar tabla
-        cargarTablaVehiculos();
-    } else {
-        JOptionPane.showMessageDialog(this, "Seleccione un vehículo para eliminar");
-    }
+        if(filaSeleccionada >= 0) {
+                // Confirmar eliminación
+                int confirmacion = JOptionPane.showConfirmDialog(
+                    this, 
+                    "¿Está seguro de eliminar este vehículo?", 
+                    "Confirmar eliminación", 
+                    JOptionPane.YES_NO_OPTION
+                );
+
+                if(confirmacion == JOptionPane.YES_OPTION) {
+                    // Obtener la placa (asumiendo que es la primera columna)
+                    String placa = tableListVehiculos.getValueAt(filaSeleccionada, 0).toString();
+                    // Eliminar a través del controlador
+                    if(vehiculoController.eliminarVehiculo(placa)) {
+                        // Eliminar solo la fila seleccionada
+                        ((DefaultTableModel)tableListVehiculos.getModel()).removeRow(filaSeleccionada);
+
+                        JOptionPane.showMessageDialog(
+                            this, 
+                            "Vehículo eliminado correctamente", 
+                            "Éxito", 
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } else {
+                        JOptionPane.showMessageDialog(
+                            this, 
+                            "Error al eliminar el vehículo", 
+                            "Error", 
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(
+                    this, 
+                    "Seleccione un vehículo para eliminar", 
+                    "Advertencia", 
+                    JOptionPane.WARNING_MESSAGE
+                );
+            }
     }//GEN-LAST:event_btnELiminarActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        VistaIniciar init = new VistaIniciar();
+        init.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnEditarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVehiculoActionPerformed
+        int filaSeleccionada = tableListVehiculos.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            // Obtener datos de la fila seleccionada
+            String placa = tableListVehiculos.getValueAt(filaSeleccionada, 0).toString();
+            String tipo = tableListVehiculos.getValueAt(filaSeleccionada, 1).toString();
+            double capacidad = Double.parseDouble(tableListVehiculos.getValueAt(filaSeleccionada, 2).toString());
+
+            // Crear y mostrar formulario de edición
+            EditarVehiculoDialog dialog = new EditarVehiculoDialog(
+                this, 
+                true, 
+                placa, 
+                tipo, 
+                capacidad, 
+                vehiculoController
+            );
+            dialog.setVisible(true);
+
+            // Refrescar tabla después de editar
+            cargarTablaVehiculos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un vehículo para editar");
+        }
+    }//GEN-LAST:event_btnEditarVehiculoActionPerformed
 //    
 //    private void initComponents() {
 //        jPanel1 = new javax.swing.JPanel();
@@ -148,6 +244,8 @@ public class listarVehiculos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnELiminar;
+    private javax.swing.JButton btnEditarVehiculo;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableListVehiculos;
@@ -183,15 +281,25 @@ public class listarVehiculos extends javax.swing.JFrame {
 //    }
 //    
     private void cargarTablaVehiculos() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) tableListVehiculos.getModel();
-            modelo.setRowCount(0); // Limpiar tabla antes de cargar
-            vehiculoController.cargarVehiculosEnTabla(modelo);
-        } catch (Exception e) {
-            logger.severe("Error al cargar vehículos: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, "Error al cargar datos de vehículos");
-        }
-}
+//        try {
+//            DefaultTableModel modelo = (DefaultTableModel) tableListVehiculos.getModel();
+//            modelo.setRowCount(0); // Limpiar tabla antes de cargar
+//            vehiculoController.cargarVehiculosEnTabla(modelo);
+//        } catch (Exception e) {
+//            logger.severe("Error al cargar vehículos: " + e.getMessage());
+//            JOptionPane.showMessageDialog(this, "Error al cargar datos de vehículos");
+//        }
+        DefaultTableModel modelo = (DefaultTableModel) tableListVehiculos.getModel();
+           modelo.setRowCount(0); // Limpiar tabla antes de cargar
+
+           try {
+               vehiculoController.cargarVehiculosEnTabla(modelo);
+               tableListVehiculos.setModel(modelo);
+           } catch (Exception e) {
+               JOptionPane.showMessageDialog(this, "Error al cargar vehículos: " + e.getMessage(), 
+                   "Error", JOptionPane.ERROR_MESSAGE);
+           }
+       }
     
     
     

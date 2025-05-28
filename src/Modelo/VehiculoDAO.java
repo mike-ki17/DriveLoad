@@ -1,6 +1,7 @@
 
 package Modelo;
 
+import Controlador.VehiculoController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -67,12 +68,44 @@ public class VehiculoDAO {
     }
     
 
+    public boolean eliminarVehiculo(String placa) throws SQLException {
+        String sql = "DELETE FROM vehiculos WHERE placa = ?";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-    public void limpiarModelo(DefaultTableModel modelo) {
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
+            stmt.setString(1, placa); // ¡Este paso es crucial!
+            int affectedRows = stmt.executeUpdate();
+
+            if(affectedRows > 0) {
+                System.out.println("Vehículo eliminado con éxito");
+                return true;
+            } else {
+                System.out.println(" No se encontró el vehículo con placa: " + placa);
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar vehículo");
+            e.printStackTrace();
+            throw e; // Relanzamos la excepción para manejo superior
         }
     }
+
+    public boolean actualizarVehiculo(String placa, String tipo, double capacidad) throws SQLException {
+        String sql = "UPDATE vehiculos SET tipo = ?, capacidad = ? WHERE placa = ?";
+
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, tipo);
+            stmt.setDouble(2, capacidad);
+            stmt.setString(3, placa);
+
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        }
+    }
+
 }
 
 

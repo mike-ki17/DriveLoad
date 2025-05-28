@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -25,6 +27,7 @@ public class VehiculoController implements ActionListener, MouseListener {
     Vehiculo vehiculo;
     private final List<CampoConTexto> camposTexto = new ArrayList<>();
     private VehiculoDAO vehiculoDAO;
+    private static final Logger logger = Logger.getLogger(VehiculoController.class.getName());
     
     public VehiculoController() {
         this.vehiculoDAO = new VehiculoDAO();
@@ -181,10 +184,24 @@ public class VehiculoController implements ActionListener, MouseListener {
         // Llamar al método del DAO para obtener los vehículos
         vehiculoDAO.obtenerVehiculosTabla(modelo);
     }
+    public boolean eliminarVehiculo(String placa) {
+         try {
+             return vehiculoDAO.eliminarVehiculo(placa);
+         } catch (SQLException e) {
+//             logger.error("Error al eliminar vehículo: " + e.getMessage());
+             System.out.println(e.getMessage());
+             return false;
+         }
+     }
     
-    public void eliminarVehiculo (String placa) {
-        System.out.println("Ohhhh vas a eliminar: " + placa);
+    public boolean actualizarVehiculo(String placa, String tipo, double capacidad) {
+    try {
+        return vehiculoDAO.actualizarVehiculo(placa, tipo, capacidad);
+    } catch (SQLException e) {
+        System.out.println("Error al actualizar vehículo" + e);
+        return false;
     }
+}
     
     
     
