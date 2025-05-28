@@ -6,7 +6,9 @@ public class Vehiculo {
     
     String placa, tipo;
     double capacidad;
-
+        
+    public Vehiculo() {}
+    
     public String getPlaca() {
         return placa;
     }
