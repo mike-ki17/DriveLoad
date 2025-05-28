@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import Modelo.Vehiculo;
 import Modelo.VehiculoDAO;
+import Vista.MessageError;
 import Vista.MessageSucefull;
 import Vista.RegisterVehiculo;
 import java.awt.Color;
@@ -74,18 +75,58 @@ public class VehiculoController implements ActionListener, MouseListener {
     
     public void actionPerformed(ActionEvent e) {
          if ("ENVIAR".equals(e.getActionCommand())){
+            
              
             for (CampoConTexto campo : camposTexto) {
                 
-                switch (campo.id){
+                switch (campo.id) {
                     case "placa":
-                        vehiculo.setPlaca(campo.textField.getText());
+                        String placa = campo.textField.getText().trim();
+                        if (placa.length() == 0 || placa.equals(campo.textoPorDefecto)) {
+                            registerVehiculo.getPlacaErrorLabel().setText("Campo requerido");
+                            return;
+                        }
+                        if (placa.length() != 6) {
+                            registerVehiculo.getPlacaErrorLabel().setText("La placa debe tener exactamente 6 caracteres.");
+                            return;
+                        } else {
+                            registerVehiculo.getPlacaErrorLabel().setText("");
+                            vehiculo.setPlaca(placa);
+                        }
                         break;
+
                     case "tipo":
-                        vehiculo.setTipo(campo.textField.getText());
+                        String tipo = campo.textField.getText().trim();
+                        System.out.println(tipo);
+                        if (tipo.length() == 0 || tipo.equals(campo.textoPorDefecto)) {
+                            registerVehiculo.getTipoErrorLabel().setText("Campo requerido");
+                            return;
+                        } else {
+                            registerVehiculo.getTipoErrorLabel().setText("");
+                            vehiculo.setTipo(tipo);
+                        }
                         break;
+
                     case "capacidad":
-                        vehiculo.setCapacidad(Double.parseDouble(campo.textField.getText()));
+                        String capacidadStr = campo.textField.getText().trim();
+                        if (capacidadStr.length() == 0 || capacidadStr.equals(campo.textoPorDefecto)) {
+                            registerVehiculo.getCapacidadErrorLabel().setText("Campo requerido");
+                            return;
+                        }
+                        try {
+                            double capacidad = Double.parseDouble(capacidadStr);
+                            if (capacidad <= 0) {
+                                registerVehiculo.getCapacidadErrorLabel().setText("La capacidad debe ser mayor a cero.");
+                                return;
+                            } else {
+                                registerVehiculo.getCapacidadErrorLabel().setText("");
+                                vehiculo.setCapacidad(capacidad);
+                            }
+                        } catch (NumberFormatException ex) {
+                            registerVehiculo.getCapacidadErrorLabel().setText("Ingrese un número válido.");
+                            return;
+                        }
+                        break;
                 }
             }
              System.out.println("Placa registrada: " + vehiculo.getPlaca());
@@ -102,6 +143,10 @@ public class VehiculoController implements ActionListener, MouseListener {
                 message.getRegisterExitosoCapacidadLabel().setText("Capacidad: " + String.valueOf(vehiculo.getCapacidad()));
                 
                 message.setVisible(true);
+            }
+            else{
+                MessageError error = new MessageError();
+                error.setVisible(true);
             }
             
         }

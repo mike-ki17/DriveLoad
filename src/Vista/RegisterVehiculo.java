@@ -46,6 +46,9 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         capacidadText = new javax.swing.JTextField();
         separadorCapacidad = new javax.swing.JSeparator();
         btnRegistrar = new javax.swing.JButton();
+        placaErrorLabel = new javax.swing.JLabel();
+        tipoErrorLabel = new javax.swing.JLabel();
+        capacidadErrorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -135,6 +138,18 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         });
         bg.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 117, 50));
 
+        placaErrorLabel.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        placaErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
+        bg.add(placaErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 208, -1, 10));
+
+        tipoErrorLabel.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        tipoErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
+        bg.add(tipoErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, 10));
+
+        capacidadErrorLabel.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        capacidadErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
+        bg.add(capacidadErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, 10));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,16 +208,19 @@ public class RegisterVehiculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel capacidadErrorLabel;
     private javax.swing.JTextField capacidadText;
     private javax.swing.JLabel capcidadLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel placaErrorLabel;
     private javax.swing.JLabel placaLabel;
     private javax.swing.JTextField placaText;
     private javax.swing.JSeparator separadorCapacidad;
     private javax.swing.JSeparator separadorPlaca;
     private javax.swing.JSeparator separadorTipo;
+    private javax.swing.JLabel tipoErrorLabel;
     private javax.swing.JLabel tipoLabel;
     private javax.swing.JTextField tipoText;
     // End of variables declaration//GEN-END:variables
@@ -235,6 +253,19 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         return tipoLabel;
     }
 
+    public JLabel getPlacaErrorLabel() {
+        return placaErrorLabel;
+    }
+
+    public JLabel getCapacidadErrorLabel() {
+        return capacidadErrorLabel;
+    }
+
+    public JLabel getTipoErrorLabel() {
+        return tipoErrorLabel;
+    }
+
+    
   
 
 
