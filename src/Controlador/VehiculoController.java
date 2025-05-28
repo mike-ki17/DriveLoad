@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import Modelo.Vehiculo;
+import Modelo.VehiculoDAO;
+import Vista.MessageSucefull;
 import Vista.RegisterVehiculo;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTextField;
-
 
 
 
@@ -26,33 +28,32 @@ public class VehiculoController implements ActionListener, MouseListener {
         this.vehiculo = vehiculo;  // Modelo
         this.registerVehiculo.getBtnRegistrar().addActionListener(this);
         
-        camposTexto.add(new CampoConTexto(registerVehiculo.getTipoText(), "Ingrese el tipo de vehiculo"));
-        camposTexto.add(new CampoConTexto(registerVehiculo.getPlacaText(), "Ingrese la placa del vehiculo"));
-        camposTexto.add(new CampoConTexto(registerVehiculo.getCapacidadText(), "Ingrese la capacidad del vehiculo"));
+        camposTexto.add(new CampoConTexto(registerVehiculo.getPlacaText(), "Ingrese la placa del vehiculo", "placa"));
+        camposTexto.add(new CampoConTexto(registerVehiculo.getTipoText(), "Ingrese el tipo de vehiculo", "tipo"));
+        camposTexto.add(new CampoConTexto(registerVehiculo.getCapacidadText(), "Ingrese la capacidad del vehiculo", "capacidad"));
+        
+        
 
-
-
-//        for (CampoConTexto campo : camposTexto) {
-//            System.out.println(campo);
-//            System.out.println(campo.textoPorDefecto);
-//            campo.textField.addMouseListener(this);
-//        }
     
-    for (CampoConTexto campo : camposTexto) {
+        for (CampoConTexto campo : camposTexto) {
             campo.textField.addFocusListener(new java.awt.event.FocusAdapter() {
                 @Override
                 public void focusGained(java.awt.event.FocusEvent e) {
+                   
                     if (campo.textField.getText().equals(campo.textoPorDefecto)) {
                         campo.textField.setText("");
+                        campo.textField.setForeground(Color.black);
                     }
                 }
                 @Override
                 public void focusLost(java.awt.event.FocusEvent e) {
                     if (campo.textField.getText().isEmpty()) {
                         campo.textField.setText(campo.textoPorDefecto);
+                        campo.textField.setForeground(Color.GRAY);
                     }
                 }
             });
+            campo.textField.addMouseListener(this);
         }
     }
     
@@ -60,59 +61,63 @@ public class VehiculoController implements ActionListener, MouseListener {
     private static class CampoConTexto {
         JTextField textField;
         String textoPorDefecto;
+        String id;
 
-        CampoConTexto(JTextField textField, String textoPorDefecto) {
+        CampoConTexto(JTextField textField, String textoPorDefecto, String id) {
             this.textField = textField;
             this.textoPorDefecto = textoPorDefecto;
+            this.id = id;
+            
         }
     }
     
     
     public void actionPerformed(ActionEvent e) {
          if ("ENVIAR".equals(e.getActionCommand())){
-//             String placa = registerVehiculo.getPlacaText().getText();
-//             vehiculo.setPlaca(placa);
-            
+             
+            for (CampoConTexto campo : camposTexto) {
+                
+                switch (campo.id){
+                    case "placa":
+                        vehiculo.setPlaca(campo.textField.getText());
+                        break;
+                    case "tipo":
+                        vehiculo.setTipo(campo.textField.getText());
+                        break;
+                    case "capacidad":
+                        vehiculo.setCapacidad(Double.parseDouble(campo.textField.getText()));
+                }
+            }
              System.out.println("Placa registrada: " + vehiculo.getPlaca());
-         }
+             System.out.println("Tipo resgistrado: " + vehiculo.getTipo());
+             System.out.println("Capacidad registrada: " + vehiculo.getCapacidad());
+             
+            VehiculoDAO v = new VehiculoDAO();
+            boolean response = v.registrarVehiculo(vehiculo);
+            
+            if (response){
+                MessageSucefull message = new MessageSucefull();
+                message.getRegisterExitosoPlacaLabel().setText("Placa: " + vehiculo.getPlaca());
+                message.getRegisterExitosoTipoLabel().setText("Tipo: " + vehiculo.getTipo());
+                message.getRegisterExitosoCapacidadLabel().setText("Capacidad: " + String.valueOf(vehiculo.getCapacidad()));
+                
+                message.setVisible(true);
+            }
+            
+        }
         
     }
     
     @Override
-    public void mouseClicked(MouseEvent e) {
-//        Object source = e.getSource();
-//        System.out.println(source);
-//        if (source == registerVehiculo.getPlacaText() &&
-//            "Ingrese la placa del vehiculo".equals(registerVehiculo.getPlacaText().getText()) ) {
-//            registerVehiculo.getPlacaText().setText("");
-//            System.out.println("Se hizo clic en el label de Placa");
-//     
-    }
+    public void mouseClicked(MouseEvent e) {}
     @Override
     public void mousePressed(MouseEvent e) {}
     @Override
     public void mouseReleased(MouseEvent e) {}
     @Override
-    public void mouseEntered(MouseEvent e) {
-//        for (CampoConTexto campo : camposTexto) {
-//                if (e.getSource() == campo.textField && campo.textField.getText().equals(campo.textoPorDefecto)) {
-//                    campo.textField.setText("");
-//                }
-//            }
-    }
+    public void mouseEntered(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {
-//        Object source = e.getSource();
-//        System.out.println(source);
-//        if (registerVehiculo.getPlacaText().getText().isEmpty()) {
-//            registerVehiculo.getPlacaText().setText("Ingrese la placa del vehiculo");
-//        }
-//    for (CampoConTexto campo : camposTexto) {
-//            if (source == campo.textField && campo.textField.getText().isEmpty()) {
-//                campo.textField.setText(campo.textoPorDefecto);
-//            }
-//        }
- }
+    public void mouseExited(MouseEvent e) {}
     
     public static void main(String[] arg){
          RegisterVehiculo registerVehiculo = new RegisterVehiculo();

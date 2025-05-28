@@ -96,7 +96,7 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         tipoText.setBackground(new java.awt.Color(255, 255, 255));
         tipoText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         tipoText.setForeground(new java.awt.Color(153, 153, 153));
-        tipoText.setText("Ingrese el tipo de vahiculo");
+        tipoText.setText("Ingrese el tipo de vehiculo");
         tipoText.setBorder(null);
         tipoText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
         tipoText.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public class RegisterVehiculo extends javax.swing.JFrame {
         capacidadText.setBackground(new java.awt.Color(255, 255, 255));
         capacidadText.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         capacidadText.setForeground(new java.awt.Color(153, 153, 153));
-        capacidadText.setText("Ingrese la capacidad del vahiculo");
+        capacidadText.setText("Ingrese la capacidad del vehiculo");
         capacidadText.setBorder(null);
         capacidadText.setSelectedTextColor(new java.awt.Color(204, 204, 204));
         capacidadText.addActionListener(new java.awt.event.ActionListener() {

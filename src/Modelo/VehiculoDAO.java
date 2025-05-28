@@ -22,4 +22,25 @@ public class VehiculoDAO {
             System.err.println("Error al obtener usuarios: " + e.getMessage());
         }
     }
+    
+    
+    public boolean registrarVehiculo(Vehiculo vehiculo){
+        String sql = "INSERT INTO vehiculos (placa, tipo, capacidad) VALUES ( ?, ?, ?)";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, vehiculo.getPlaca());
+            stmt.setString(2, vehiculo.getTipo());
+            stmt.setDouble(3, vehiculo.getCapacidad());
+
+            stmt.executeUpdate();
+            System.out.println("✅ Vehículo registrado con éxito");
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("❌ Error al registrar vehículo");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
