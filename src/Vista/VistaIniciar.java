@@ -33,75 +33,94 @@ public class VistaIniciar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         btnCConsultar = new javax.swing.JButton();
         btnC = new javax.swing.JButton();
         btnV1 = new javax.swing.JButton();
         btnV2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(501, 417));
+        setPreferredSize(new java.awt.Dimension(890, 440));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Registrar Conductores");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 200, 70));
-
+        btnCConsultar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCConsultar.setForeground(new java.awt.Color(255, 255, 255));
         btnCConsultar.setText("Consultar");
         btnCConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCConsultarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 120, 70));
+        jPanel1.add(btnCConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 150, 40));
 
-        btnC.setText("Registrar Conductores");
+        btnC.setBackground(new java.awt.Color(0, 0, 0));
+        btnC.setForeground(new java.awt.Color(255, 255, 255));
+        btnC.setText("Registrar");
         btnC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCActionPerformed(evt);
             }
         });
-        jPanel1.add(btnC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 200, 70));
+        jPanel1.add(btnC, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 150, 60));
 
-        btnV1.setText("Registrar Vehiculos");
+        btnV1.setBackground(new java.awt.Color(0, 0, 0));
+        btnV1.setForeground(new java.awt.Color(255, 255, 255));
+        btnV1.setText("Registrar");
         btnV1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnV1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 70));
+        jPanel1.add(btnV1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 150, 60));
 
+        btnV2.setBackground(new java.awt.Color(0, 0, 0));
+        btnV2.setForeground(new java.awt.Color(255, 255, 255));
         btnV2.setText("Consultar");
         btnV2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnV2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnV2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 120, 70));
+        jPanel1.add(btnV2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 150, 40));
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu Sans Mono", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("DriveLoad");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Gestion Conductores");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Gestion Vehiculos");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bus-driver-51(2).png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 270, 180));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/diversity-84(1).png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 230, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
         // TODO add your handling code here:
@@ -114,7 +133,9 @@ public class VistaIniciar extends javax.swing.JFrame {
 
     private void btnCConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCConsultarActionPerformed
         // TODO add your handling code here:
-       
+      listaConductores listaConducs = new listaConductores();
+        listaConducs.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCConsultarActionPerformed
 
     private void btnV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnV1ActionPerformed
@@ -165,7 +186,11 @@ public class VistaIniciar extends javax.swing.JFrame {
     private javax.swing.JButton btnCConsultar;
     private javax.swing.JButton btnV1;
     private javax.swing.JButton btnV2;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

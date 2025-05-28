@@ -44,6 +44,7 @@ public class listarVehiculos extends javax.swing.JFrame {
         btnELiminar = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         btnEditarVehiculo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +71,7 @@ public class listarVehiculos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableListVehiculos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         btnELiminar.setBackground(new java.awt.Color(255, 0, 51));
         btnELiminar.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,7 +81,7 @@ public class listarVehiculos extends javax.swing.JFrame {
                 btnELiminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnELiminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 120, 50));
+        jPanel1.add(btnELiminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 570, 120, 50));
 
         btnMenu.setBackground(new java.awt.Color(0, 0, 0));
         btnMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,7 +91,7 @@ public class listarVehiculos extends javax.swing.JFrame {
                 btnMenuActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 530, 120, 50));
+        jPanel1.add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 570, 120, 50));
 
         btnEditarVehiculo.setBackground(new java.awt.Color(51, 51, 255));
         btnEditarVehiculo.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,19 +101,22 @@ public class listarVehiculos extends javax.swing.JFrame {
                 btnEditarVehiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 530, 100, 50));
+        jPanel1.add(btnEditarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 570, 100, 50));
+
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Vehiculos Registrados");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 250, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
         );
 
         pack();
@@ -246,6 +250,7 @@ public class listarVehiculos extends javax.swing.JFrame {
     private javax.swing.JButton btnELiminar;
     private javax.swing.JButton btnEditarVehiculo;
     private javax.swing.JButton btnMenu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableListVehiculos;

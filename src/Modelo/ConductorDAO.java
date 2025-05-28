@@ -45,11 +45,12 @@ public class ConductorDAO {
     }
     
     
-    public List<Conductor> listarConductores() {
+    public List<Conductor> obtenerListaConductores() {
         List<Conductor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM conductores";
+        String query = "SELECT * FROM conductores";
+
         try (Connection conn = Conexion.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
+             PreparedStatement ps = conn.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
@@ -60,9 +61,44 @@ public class ConductorDAO {
                 lista.add(c);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error al obtener conductores: " + e.getMessage());
         }
+
         return lista;
     }
+
+    
+    
+    public boolean actualizarConductorPorNombre(Conductor conductor) {
+        String sql = "UPDATE conductores SET licencia = ?, experiencia = ? WHERE nombre = ?";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, conductor.getLicencia());
+            stmt.setInt(2, conductor.getExperiencia());
+            stmt.setString(3, conductor.getNombre());
+
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    
+    public boolean eliminarConductorPorNombre(String nombre) {
+        String sql = "DELETE FROM conductores WHERE nombre = ?";
+        try (Connection conn = Conexion.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, nombre);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 
 }

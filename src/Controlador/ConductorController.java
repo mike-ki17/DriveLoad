@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Conductor;
 import Modelo.ConductorDAO;
+import Modelo.VehiculoDAO;
 import Vista.MessageError;
 import Vista.MessageSucefull;
 import Vista.RegisterConductores;
@@ -12,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
 
 public class ConductorController implements ActionListener, MouseListener {
@@ -19,6 +21,13 @@ public class ConductorController implements ActionListener, MouseListener {
     RegisterConductores registerConductor;
     Conductor conductor;
     private final List<CampoConTexto> camposTexto = new ArrayList<>();
+    
+    private ConductorDAO conductorDAO;
+    private static final Logger logger = Logger.getLogger(VehiculoController.class.getName());
+    
+    public ConductorController() {
+        this.conductorDAO = new ConductorDAO();
+    }
 
     public ConductorController(RegisterConductores registerConductor, Conductor conductor) {
         this.registerConductor = registerConductor;
